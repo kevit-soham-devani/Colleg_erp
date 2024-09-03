@@ -29,6 +29,14 @@ class userController {
     }
   }
 
+  	/**
+	 * Function to login User
+	 * @param {Request} req=>Express Request
+	 * @param {Response} res=> Express Response
+	 * @return {*}
+	 * @memberof UserController
+	 */
+
   async logInUser(req,res, next) {
     try{
       const {PhoneNumber, password} = req.body;
@@ -62,6 +70,14 @@ class userController {
 	}
 }
 
+	/**
+	 * Function to delete user
+	 * @param {Request} req=>Express Request
+	 * @param {Response} res=> Express Response
+	 * @return {*}
+	 * @memberof UserController
+	 */
+
 	async deleteUser(req, res, next) {
 		try {
 			const { role } = req.user;
@@ -79,6 +95,14 @@ class userController {
 		}
 	}
 
+	/**
+	 * Function to get User
+	 * @param {Request} req=>Express Request
+	 * @param {Response} res=> Express Response
+	 * @return {*}
+	 * @memberof UserController
+	 */
+
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
 	async getUsers(req, res, next) {
 		try {
@@ -93,6 +117,14 @@ class userController {
 		}
 	}
 
+		/**
+	 * Function to logOut User
+	 * @param {Request} req=>Express Request
+	 * @param {Response} res=> Express Response
+	 * @return {*}
+	 * @memberof UserController
+	 */
+	
   async logOutUser(req, res, next) {
 		try {
 			req.user.tokens = [];
