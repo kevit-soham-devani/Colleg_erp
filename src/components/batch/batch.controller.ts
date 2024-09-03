@@ -32,8 +32,8 @@ class BatchController {
 				}
 				const batch = await createNewBatch({ year, branches });
 				return res.status(201).send(batch);
-			} catch (e) {
-				return res.status(500).send(e);
+			} catch (error) {
+				return res.status(500).send({message : error});
 			}
 		}
 	/**
@@ -52,8 +52,8 @@ class BatchController {
 			const { year } = req.query;
 			const batch = await addBranch({ year, ...req.body });
 			return res.status(200).send(batch);
-		} catch (e) {
-			return res.status(500).send(e);
+		} catch (error) {
+			return res.status(500).send({message : error});
 		}
 	}
 		/**
@@ -87,8 +87,8 @@ class BatchController {
 			return res
 				.status(200)
 				.send({ message: 'Batch deleted successfully' });
-		} catch (e) {
-			return res.status(500).send(e);
+		} catch (error) {
+			return res.status(500).send({message : error});
 		}
 	}
 	/**
@@ -106,8 +106,8 @@ class BatchController {
 			}
 			const batches = await Batch.find();
 			return res.status(200).send(batches);
-		} catch (e) {
-			return res.status(500).send(e);
+		} catch (error) {
+			return res.status(500).send({message : error});
 		}
 	}
 	/**
@@ -135,8 +135,8 @@ class BatchController {
 			
 			const batch = await updateBatch({ year, ...req.body });
 			return res.status(200).send(batch);
-		} catch (e) {
-			return res.status(500).send(e);
+		} catch (error) {
+			return res.status(500).send({message : error});
 		}
 	}
 	/**
@@ -158,8 +158,8 @@ class BatchController {
 			}
 			const vacantSeats = await getVacantSeatsByYear(Number(year));
 			return res.status(200).send(vacantSeats);
-		} catch (e) {
-			return res.status(500).send(e);
+		} catch (error) {
+			return res.status(500).send({message : error});
 		}
 	}
 }

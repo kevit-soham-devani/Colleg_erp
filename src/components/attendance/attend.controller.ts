@@ -38,8 +38,8 @@ class AttendanceController {
 				date: formattedDate,
 			});
 			res.status(201).send(attendance);
-		} catch (e) {
-			res.send(e);
+		} catch (error) {
+			return res.status(500).send({message : error});
 		}
 	}
 

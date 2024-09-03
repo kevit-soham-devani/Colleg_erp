@@ -25,7 +25,7 @@ class userController {
       await user.addToken(token)
       res.status(200).send({ data: user, token})
     } catch (error) {
-      return res.send(error);
+      return res.status(500).send({message : error});
     }
   }
 
@@ -43,8 +43,8 @@ class userController {
 			const token = generateToken(user?._id?.toString());
 			await user.addToken(token);
 			res.status(200).send({ data: user, token });
-    } catch (e) {
-      res.send(e)
+    } catch (error) {
+		return res.status(500).send({message : error});
     }
   }
 
@@ -57,8 +57,8 @@ class userController {
 		}
 		const updatedUser = await updateuserDetails(phoneNumber, req.body);
 		return res.send({ data: updatedUser });
-	} catch (e) {
-		return res.send(e);
+	} catch (error) {
+		return res.status(500).send({message : error});
 	}
 }
 
@@ -74,8 +74,8 @@ class userController {
 				return res.send({ message: 'User does not exists' });
 			}
 			res.send(deletedUser);
-		} catch (e) {
-			res.send(e);	
+		} catch (error) {
+			return res.status(500).send({message : error});	
 		}
 	}
 
@@ -88,8 +88,8 @@ class userController {
 			}
 			const users = await User.find()
 			res.status(200).send({ data: users });
-		} catch (e) {
-			res.send(e);
+		} catch (error) {
+			return res.status(500).send({message : error});
 		}
 	}
 
@@ -98,8 +98,8 @@ class userController {
 			req.user.tokens = [];
 			await req.user.save();
 			return res.send({ data: 'Succesfully logged out' });
-		} catch (e) {
-			res.send(e);
+		} catch (error) {
+			return res.status(500).send({message : error});
 		}
 	}
 }

@@ -34,8 +34,8 @@ class StudentController {
 			const student = await createNewStudent(req.body);
 			await incrementSeatCount({department, batch})
 			res.status(201).send(student);
-		} catch (e) {
-			res.send({ message: e.message });
+		} catch (error) {
+			return res.status(500).send({message : error});
 		}
 	}
 		/**
@@ -52,8 +52,8 @@ class StudentController {
 				return res.send({ message: 'No students exists' });
 			}
 			res.status(200).send(students);
-		} catch (e) {
-			res.send(e);
+		} catch (error) {
+			return res.status(500).send({message : error});
 		}
 	}
 	/**
@@ -74,8 +74,8 @@ class StudentController {
 			}
 			await decrementSeatCount(student);
 			return res.status(200).send(student);
-		} catch (e) {
-			return res.status(500).send(e);
+		} catch (error) {
+			return res.status(500).send({message : error});
 		}
 	}
 	/**
