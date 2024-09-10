@@ -2,7 +2,7 @@
 import { Router } from 'express';
 import StudentController from './student.controller';
 import auth from '../../utils/auth';
-import role from '../../utils/verifyrole'
+import { deleteStudentByrollNumber, updateStudentValidator } from './student.validator';
 class StudentRoute {
 	public router: Router;
 
@@ -17,13 +17,13 @@ class StudentRoute {
 		this.router.post(
 			'/student',
 			auth,
-			// role,
 			this.studentController.createStudent,
 		);
 		this.router.get('/student', auth, this.studentController.getStudents);
 		this.router.delete(
 			'/student/:rollNumber',
 			auth,
+			...deleteStudentByrollNumber,
 			this.studentController.deleteStudent,
 		);
 		this.router.get(
@@ -34,6 +34,7 @@ class StudentRoute {
 		this.router.patch(
 			'/student/:rollNumber',
 			auth,
+			...updateStudentValidator,
 			this.studentController.updateStudent,
 		);
 	}

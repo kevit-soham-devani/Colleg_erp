@@ -2,6 +2,7 @@ import { Router } from "express";
 import userController from "./user.controller";
 import auth from "../../utils/auth";
 import role from "../../utils/verifyrole";
+import { loginValidator, signUpValidator } from "./user.validator";
 class UserRouter {
     public router: Router;
 
@@ -15,10 +16,15 @@ class UserRouter {
     initializeRoutes () {
 
         //signup
-        this.router.post('/user/signup', auth, this.userController.createUser)
+        this.router.post('/user/signup',
+        auth,
+        ...signUpValidator,
+        this.userController.createUser)
 
         //loginUser
-        this.router.post('/users/login', this.userController.logInUser)
+        this.router.post('/users/login',
+        ...loginValidator,
+        this.userController.logInUser)
 
         //UpdateUser
         this.router.patch('/user/:phoneNumber',auth,this.userController.updateUser)

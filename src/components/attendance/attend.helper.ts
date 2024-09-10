@@ -1,6 +1,8 @@
 import Attendance from "./attend.model";
 import moment from 'moment'
 import { ISABSENT } from "./attendence.enum";
+import { DATE_FORMAT } from "config";
+
 
 /**
  * @description Helper to find low attendance
@@ -11,10 +13,10 @@ export const getLowAttendance = async (queryParams: any): Promise<any> => {
 	const { startDate, endDate } = queryParams;
 
 	// Validate and format the dates
-	const formattedStartDate = moment(startDate, 'DD-MM-YYYY')
+	const formattedStartDate = moment(startDate, DATE_FORMAT)
 		.startOf('day')
 		.toDate();
-	const formattedEndDate = moment(endDate, 'DD-MM-YYYY')
+	const formattedEndDate = moment(endDate, DATE_FORMAT)
 		.endOf('day')
 		.toDate();
 	const query: any = {

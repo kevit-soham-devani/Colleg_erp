@@ -5,6 +5,7 @@ import { addAttendance,updateAttendanceRecord } from './attend.DAL';
 import Student from '../students/student.model';
 import moment from 'moment';
 import { ISABSENT } from './attendence.enum';
+import { DATE_FORMAT } from 'config';
 class AttendanceController {
 
 	/**
@@ -21,7 +22,7 @@ class AttendanceController {
 			if (!student) {
 				return res.send({ message: 'Student does not exists' });
 			}
-			const formattedDate = moment(date, 'DD-MM-YYYY').toDate();
+			const formattedDate = moment(date, DATE_FORMAT).toDate();
 			const existingAttendance = await Attendance.findOne({
 				rollNumber,
 				date: formattedDate,
@@ -53,7 +54,7 @@ class AttendanceController {
 	async getAttendance(req, res, next) {
 		try {
 			const { date } = req.query;
-			const formattedDate = moment(date, 'DD-MM-YYYY').toDate();
+			const formattedDate = moment(date, DATE_FORMAT).toDate();
 
 			const attendanceRecords = await Attendance.find({
 				date: formattedDate,

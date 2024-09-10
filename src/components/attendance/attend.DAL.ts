@@ -1,4 +1,5 @@
 /**attendance.Dal.ts */
+import { DATE_FORMAT } from 'config';
 import Attendance from './attend.model';
 import moment from 'moment'
 
@@ -27,7 +28,7 @@ export async function addAttendance(reqBody) {
  */
 export async function updateAttendanceRecord(rollNumber: string, date: string, isAbsent: string) {
     try {
-        const formattedDate = moment(date, 'DD-MM-YYYY').toDate();
+        const formattedDate = moment(date, DATE_FORMAT).toDate();
         return await Attendance.findOneAndUpdate(
             { rollNumber, date: formattedDate },
             { isAbsent },

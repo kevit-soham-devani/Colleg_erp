@@ -19,3 +19,6 @@ const Config: ConfigType = {
 	},
 };
 export default Config;
+
+export const DATE_FORMAT = 'DD-MM-YYYY'
+
