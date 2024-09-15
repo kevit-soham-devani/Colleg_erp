@@ -59,11 +59,11 @@ class userController {
   async updateUser(req, res, next) {
 	try {
 		const { role } = req.user;
-		const { phoneNumber } = req.params;
+		const { _id } = req.params;
 		if (role !== User_Role.Admin) {
 			return res.send({ message: 'Not authorized' });
 		}
-		const updatedUser = await updateuserDetails(phoneNumber, req.body);
+		const updatedUser = await updateuserDetails(_id, req.body);
 		return res.send({ data: updatedUser });
 	} catch (error) {
 		return res.status(500).send({message : error});
@@ -81,11 +81,11 @@ class userController {
 	async deleteUser(req, res, next) {
 		try {
 			const { role } = req.user;
-			const {PhoneNumber} = req.params
+			const {_id} = req.params
 			if (role === User_Role.Staff) {
 				return res.send({ message: 'Only admin can delete User' });
 			}
-			const deletedUser = await deleteUser({ PhoneNumber });
+			const deletedUser = await deleteUser({ _id });
 			if (!deletedUser) {
 				return res.send({ message: 'User does not exists' });
 			}

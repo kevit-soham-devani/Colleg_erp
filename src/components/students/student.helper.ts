@@ -12,6 +12,8 @@ import Student from './student.model';
 export async function checkSeat(
 	department: string,
 	batch: number,
+	req,
+	res
 ): Promise<boolean> {
 	try {
 		const foundBatch = await Batch.findOne({ year: batch });
@@ -27,7 +29,7 @@ export async function checkSeat(
 		}
 		return branch.totalStudentsIntake > branch.currentSeatCount
 	} catch (e) {
-		throw e;
+		return res.status(500).send({message : e});	
 	}
 }
 
@@ -83,7 +85,7 @@ export async function checkSeat(
  * @param {*} { department, batch }
  * @return {*}
  */
-export async function incrementSeatCount({ department, batch }) {
+export async function incrementSeatCount({ department, batch, res }) {
 	try {
 		return await Batch.findOneAndUpdate(
 			{ year: batch, 'branches.name': department },
@@ -95,8 +97,8 @@ export async function incrementSeatCount({ department, batch }) {
 			},
 			{ new: true },
 		);
-	} catch (e) {
-		return e;
+	} catch (error) {
+		return res.status(500).send({message : error});	
 	}
 }
 /**
@@ -105,7 +107,7 @@ export async function incrementSeatCount({ department, batch }) {
  * @param {*} student
  * @return {*}
  */
-export async function decrementSeatCount(student) {
+export async function decrementSeatCount(student, res) {
 	try {
 		return await Batch.findOneAndUpdate(
 			{ year: student.batch, 'branches.name': student.department },
@@ -117,7 +119,7 @@ export async function decrementSeatCount(student) {
 			},
 			{ new: true },
 		);
-	} catch (e) {
-		return e;
+	} catch (error) {
+		return res.status(500).send({message : error});	
 	}
 }

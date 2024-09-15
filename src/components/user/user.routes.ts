@@ -3,6 +3,7 @@ import userController from "./user.controller";
 import auth from "../../utils/auth";
 import role from "../../utils/verifyrole";
 import { loginValidator, signUpValidator } from "./user.validator";
+import { handleValidationErrors } from "utils/handlevalidator";
 class UserRouter {
     public router: Router;
 
@@ -27,7 +28,7 @@ class UserRouter {
         this.userController.logInUser)
 
         //UpdateUser
-        this.router.patch('/user/:phoneNumber',auth,this.userController.updateUser)
+        this.router.patch('/user/:phoneNumber',auth ,handleValidationErrors ,this.userController.updateUser)
 
         //deleteuser
         this.router.delete('/users/:phoneNumber',auth, this.userController.deleteUser)

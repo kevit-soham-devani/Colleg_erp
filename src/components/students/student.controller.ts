@@ -65,8 +65,8 @@ class StudentController {
 	 */
 	async deleteStudent(req, res, next) {
 		try {
-			const { rollNumber } = req.params;
-			const student = await deleteStudent(rollNumber);
+			const { _id } = req.params;
+			const student = await deleteStudent(_id);
 			if (!student) {
 				return res
 					.status(404)
@@ -103,10 +103,10 @@ class StudentController {
 	 */
 	async updateStudent(req, res, next) {
 		try {
-			const { rollNumber } = req.params;
+			const { _id } = req.params;
 			const updateData = req.body;
 
-			const updatedStudent = await updateStudent(rollNumber, updateData);
+			const updatedStudent = await updateStudent(_id, updateData);
 			if (!updatedStudent) {
 				return res.status(404).send({ message: 'Student not found' });
 			}
