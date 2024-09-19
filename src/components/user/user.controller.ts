@@ -16,7 +16,7 @@ class userController {
   async createUser(req, res) {
     try {
       const {phoneNumber} = req.body
-      const existingUser = await User.findOne(phoneNumber)
+      const existingUser = await User.findOne({phoneNumber})
       if(existingUser) {
         return res.send({message: 'User already exist'})
       }

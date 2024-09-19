@@ -1,12 +1,23 @@
 import * as jwt from "jsonwebtoken";
 import { User_Role } from "../components/user/user.enum";
 import { User } from "../components/user/user.model";
+
+
+// export const generateToken = (userId: string): string => {
+// 	return jwt.sign({ _id: userId }, process.env.JWT_SECRET);
+// };
+
 export const generateToken = (userId: string): string => {
-	return jwt.sign({ _id: userId }, process.env.JWT_SECRET);
+    const token = jwt.sign({ _id: userId }, process.env.JWT_SECRET);
+    console.log("Generated Token:", token);  // Debugging line
+    return token;
 };
+
 
 const auth = async (req, res, next) => {
 	try {
+		console.log("--------");
+		
 		const { role } = req.body;
 		
 		if (role === User_Role.Admin) {
@@ -28,8 +39,9 @@ const auth = async (req, res, next) => {
 			next();
 		}
 	} catch (e) {
-		res.status(401).send({
-			error: 'Not authorized',
+		console.trace(e)
+		res.status(500).send({
+			error: 'internal server',
 		});
 	}
 };

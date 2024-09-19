@@ -18,6 +18,7 @@ class UserRouter {
 
         //signup
         this.router.post('/user/signup',
+        auth,
         role,
         ...signUpValidator,
         this.userController.createUser)
@@ -29,18 +30,19 @@ class UserRouter {
 
         //UpdateUser
         this.router.patch('/user/:_id',
+        auth,
         ...updateValidator,
         handleValidationErrors,
         this.userController.updateUser)
 
         //deleteuser
-        this.router.delete('/users/:_id',this.userController.deleteUser)
+        this.router.delete('/users/:_id',auth,this.userController.deleteUser)
 
         //getListUser
-        this.router.get('/user',role,this.userController.getUsers)
+        this.router.get('/user',role,auth,this.userController.getUsers)
 
         //logOutUser
-        this.router.delete('/user/logout',this.userController.logOutUser)
+        this.router.delete('/user/logout',auth,this.userController.logOutUser)
     }
 }
 

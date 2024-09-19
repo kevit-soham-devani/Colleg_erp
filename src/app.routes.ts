@@ -9,7 +9,7 @@ import auth from './utils/auth';
 export default class ApplicationConfig {
 	static registerRoutes(app: Application) {
 		app.use('/',auth, IndexRoute);
-		app.use('/',auth,UserRoute);
+		app.use('/',UserRoute);
 		app.use('/',auth,StudentRoute);
 		app.use('/',auth,AttendanceRoute);
 		app.use('/',auth,BatchController);

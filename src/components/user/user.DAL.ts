@@ -6,7 +6,7 @@ import {User} from "./user.model"
  * @param userBody => USER OBJECT TO BE CREATED
  */
 
-export async function createNewUser(userBody = typeof User.schema.obj) {
+export async function createNewUser(userBody: typeof User.schema.obj) {
   try {
     return await User.create(userBody);
   } catch (err) {

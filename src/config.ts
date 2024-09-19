@@ -10,12 +10,11 @@ interface ConfigType {
 
 const Config: ConfigType = {
 	server: {
-		port: process.env.PORT || 3004,
+		port: process.env.PORT,
 	},
 	mongodb: {
 		url:
-			process.env.MONGODB_URL ||
-			"mongodb://127.0.0.1:27017/clg_database",
+			process.env.MONGODB_URL
 	},
 };
 export default Config;
