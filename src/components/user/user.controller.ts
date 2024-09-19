@@ -15,8 +15,8 @@ class userController {
 	
   async createUser(req, res) {
     try {
-      const {phoneNumber} = req.body
-      const existingUser = await User.findOne({phoneNumber})
+      const {PhoneNumber} = req.body
+      const existingUser = await User.findOne({PhoneNumber})	  
       if(existingUser) {
         return res.send({message: 'User already exist'})
       }
@@ -40,7 +40,7 @@ class userController {
   async logInUser(req,res, next) {
     try{
       const {PhoneNumber, password} = req.body;
-      const user = await User.findOne({PhoneNumber})
+      const user = await User.findOne({PhoneNumber})	  
       if (!user) {
 				return res.status(401).send({ error: 'Invalid credentials' });
 			}

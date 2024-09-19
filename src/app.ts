@@ -1,11 +1,8 @@
 import express, {Application} from "express";
 import * as mongoose from "mongoose";
 import ApplicationConfig from "./app.routes";
-import * as dotenv from "dotenv";
 import Config from "./config";
-dotenv.config();
 
-dotenv.config();
 const PORT = Config.server.port;
 
 class App {

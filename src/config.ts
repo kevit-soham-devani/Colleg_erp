@@ -6,16 +6,17 @@ interface ConfigType {
 	mongodb: {
 		url: string;
 	};
+	jwtsecret: string
 }
 
 const Config: ConfigType = {
 	server: {
-		port: process.env.PORT,
+		port: process.env.PORT
 	},
 	mongodb: {
-		url:
-			process.env.MONGODB_URL
+		url:process.env.MONGOURL
 	},
+	jwtsecret: process.env.JWT_SECRET
 };
 export default Config;
 

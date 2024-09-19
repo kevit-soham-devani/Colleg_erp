@@ -1,4 +1,6 @@
 import { Router } from 'express';
+import dotenv from 'dotenv';
+dotenv.config();
 
 class IndexRoute {
 	public router: Router;
