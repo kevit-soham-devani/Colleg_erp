@@ -1,7 +1,7 @@
 import Attendance from "./attend.model";
 import moment from 'moment'
 import { ISABSENT } from "./attendence.enum";
-import { DATE_FORMAT } from "config";
+import { DATE_FORMAT } from "../../config";
 
 
 /**

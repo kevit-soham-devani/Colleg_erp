@@ -24,7 +24,7 @@ class StudentController {
 	async createStudent(req, res, next) {
 		try {
 			const { department, batch } = req.body;
-			const isSeatAvailable = await checkSeat(department, batch);
+			const isSeatAvailable = await checkSeat(department, batch, res, req);
 			if (!isSeatAvailable) {
 				return res.send({
 					message: 
@@ -32,7 +32,7 @@ class StudentController {
 				});
 			}
 			const student = await createNewStudent(req.body);
-			await incrementSeatCount({department, batch})
+			await incrementSeatCount({department, batch, res})
 			res.status(201).send(student);
 		} catch (error) {
 			return res.status(500).send({message : error});
@@ -72,7 +72,7 @@ class StudentController {
 					.status(404)
 					.send({ message: 'Student does not exist' });
 			}
-			await decrementSeatCount(student);
+			await decrementSeatCount(student, res);
 			return res.status(200).send(student);
 		} catch (error) {
 			return res.status(500).send({message : error});

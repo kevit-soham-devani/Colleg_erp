@@ -1,4 +1,4 @@
-import { param, body } from 'express-validator';
+import { param, body, } from 'express-validator';
 
 const updateStudentValidator: any[] = [
   body('name').isString().withMessage('Name is required'),
@@ -8,6 +8,6 @@ const updateStudentValidator: any[] = [
   body('semester').isInt({ min: 1 }).withMessage('semester must be a positive integer'),
 ];
 
-const deleteStudentByrollNumber : any[] = [param('rollNumber').withMessage('Invalid student ID')];
+const deleteStudentByrollNumber : any[] = [param('rollNumber')];
 
 export { updateStudentValidator, deleteStudentByrollNumber};

@@ -15,11 +15,11 @@ class userController {
 	
   async createUser(req, res) {
     try {
-    //   const {phoneNumber} = req.body
-    //   const existingUser = await User.findOne(phoneNumber)
-    //   if(existingUser) {
-    //     return res.send({message: 'User already exist'})
-    //   }
+      const {phoneNumber} = req.body
+      const existingUser = await User.findOne(phoneNumber)
+      if(existingUser) {
+        return res.send({message: 'User already exist'})
+      }
       const user = await createNewUser(req.body);
       const token = generateToken(user?._id?.toString())
       await user.addToken(token)
@@ -32,7 +32,7 @@ class userController {
   	/**
 	 * Function to login User
 	 * @param {Request} req=>Express Request
-	 * @param {Response} res=> Express Response
+	 * @param {ResponsupdateDetails: any, body: anyponse
 	 * @return {*}
 	 * @memberof UserController
 	 */

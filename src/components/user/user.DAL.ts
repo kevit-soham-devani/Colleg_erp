@@ -34,9 +34,9 @@ export async function GetUserByDetail(userObj: any) {
  * Delete new User in DB 
  */
 
-export async function deleteUser(userPhoneNumber) {
+export async function deleteUser(_id) {
   try {
-    const deleteUser = await User.findOneAndDelete(userPhoneNumber)
+    const deleteUser = await User.findByIdAndDelete(_id)
     return deleteUser
   } catch (err) {
     return err

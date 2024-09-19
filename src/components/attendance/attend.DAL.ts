@@ -1,5 +1,5 @@
 /**attendance.Dal.ts */
-import { DATE_FORMAT } from 'config';
+import { DATE_FORMAT } from '../../config';
 import Attendance from './attend.model';
 import moment from 'moment'
 

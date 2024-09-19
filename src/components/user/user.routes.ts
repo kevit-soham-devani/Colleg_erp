@@ -2,8 +2,8 @@ import { Router } from "express";
 import userController from "./user.controller";
 import auth from "../../utils/auth";
 import role from "../../utils/verifyrole";
-import { loginValidator, signUpValidator } from "./user.validator";
-import { handleValidationErrors } from "utils/handlevalidator";
+import { loginValidator, signUpValidator, updateValidator } from "./user.validator";
+import { handleValidationErrors } from "../../utils/handlevalidator";
 class UserRouter {
     public router: Router;
 
@@ -18,7 +18,7 @@ class UserRouter {
 
         //signup
         this.router.post('/user/signup',
-        auth,
+        role,
         ...signUpValidator,
         this.userController.createUser)
 
@@ -28,16 +28,19 @@ class UserRouter {
         this.userController.logInUser)
 
         //UpdateUser
-        this.router.patch('/user/:phoneNumber',auth ,handleValidationErrors ,this.userController.updateUser)
+        this.router.patch('/user/:_id',
+        ...updateValidator,
+        handleValidationErrors,
+        this.userController.updateUser)
 
         //deleteuser
-        this.router.delete('/users/:phoneNumber',auth, this.userController.deleteUser)
+        this.router.delete('/users/:_id',this.userController.deleteUser)
 
         //getListUser
-        this.router.get('/user',auth, this.userController.getUsers)
+        this.router.get('/user',role,this.userController.getUsers)
 
         //logOutUser
-        this.router.delete('/user/logout',auth, this.userController.logOutUser)
+        this.router.delete('/user/logout',this.userController.logOutUser)
     }
 }
 

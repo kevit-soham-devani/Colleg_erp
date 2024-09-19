@@ -5,7 +5,7 @@ import { addAttendance,updateAttendanceRecord } from './attend.DAL';
 import Student from '../students/student.model';
 import moment from 'moment';
 import { ISABSENT } from './attendence.enum';
-import { DATE_FORMAT } from 'config';
+import { DATE_FORMAT } from '../../config';
 class AttendanceController {
 
 	/**

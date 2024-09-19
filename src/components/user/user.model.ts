@@ -16,7 +16,7 @@ export interface UserInterface extends Document {
     PhoneNumber:number,
     password:string,
     Department: Department,
-    tokens: { token: string } [],
+    token: string;
     addToken: (token:string) => Promise<void>;
     comparePassword(password: string): Promise<boolean>;
 
@@ -67,8 +67,10 @@ const UserSchema = new Schema({
         type: Schema.Types.Number,
         required: true
     },
-    tokens: [{
-        token: { type: String,required:true } }]
+    token: {
+        type: String,
+        required:true
+    }
     },
     {
     timestamps: true,
@@ -87,7 +89,7 @@ UserSchema.pre("save", async function (next: any) {
   });
 
 UserSchema.methods.addToken = async function (token: string) {
-    this.tokens = this.tokens.concat({token})
+    this.token = token
     await this.save()
 }
 
