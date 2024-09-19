@@ -10,6 +10,7 @@ export async function createNewUser(userBody: typeof User.schema.obj) {
   try {
     return await User.create(userBody);
   } catch (err) {
+    console.log(err)
     return err
   }
 }
