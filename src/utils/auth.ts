@@ -11,12 +11,7 @@ export const generateToken = (userId: string): string => {
 
 const auth = async (req, res, next) => {
 	try {
-		const { role } = req.body;
-		
-		if (role === User_Role.Admin) {
-			next();
-		} else {
-			const token = req.headers['authorization']?.replace('Bearer ', '');
+		const token = req.headers['authorization']?.replace('Bearer ', '');
 			if (!token) {
 				return res
 					.status(401)
@@ -31,7 +26,7 @@ const auth = async (req, res, next) => {
 			req.user = user;
 			next();
 		}
-	} catch (e) {
+	catch (e) {
 		res.status(500).send({
 			error: 'internal server',
 		});

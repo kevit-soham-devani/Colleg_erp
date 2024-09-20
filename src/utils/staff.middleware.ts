@@ -1,5 +1,3 @@
-import { User } from "../components/user/user.model";
-
 const staffAuthorizationMiddleware = async (req, res, next) => {
 	try {
 			const loggedInUserRole = req.user.role;

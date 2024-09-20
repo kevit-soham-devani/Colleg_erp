@@ -18,7 +18,7 @@ class UserRouter {
 
         //signup
         this.router.post('/user/signup',
-        //auth,
+        auth,
         role,
         ...signUpValidator,
         this.userController.createUser)
