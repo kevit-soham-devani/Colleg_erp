@@ -6,12 +6,14 @@ import StudentRoute from './components/students/student.routes';
 import AttendanceRoute from './components/attendance/attend.routes';
 import BatchController from './components/batch/batch.routes';
 import auth from './utils/auth';
+import { handleValidationErrors } from 'utils/handlevalidator';
+import adminAuthorizationMiddleware from 'utils/admin.middleware';
 export default class ApplicationConfig {
 	static registerRoutes(app: Application) {
-		app.use('/',auth, IndexRoute);
+		app.use('/',IndexRoute);
 		app.use('/',UserRoute);
 		app.use('/',auth,StudentRoute);
 		app.use('/',auth,AttendanceRoute);
-		app.use('/',auth,BatchController);
+		app.use('/',auth,adminAuthorizationMiddleware,BatchController);
 	}
 }

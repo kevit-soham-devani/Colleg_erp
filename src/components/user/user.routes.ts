@@ -21,11 +21,13 @@ class UserRouter {
         auth,
         role,
         ...signUpValidator,
+        handleValidationErrors,
         this.userController.createUser)
 
         //loginUser
         this.router.post('/users/login',
         ...loginValidator,
+        handleValidationErrors,
         this.userController.logInUser)
 
         //UpdateUser

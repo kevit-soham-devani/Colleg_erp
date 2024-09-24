@@ -17,25 +17,23 @@ class StudentRoute {
 	initializeRoutes() {
 		this.router.post(
 			'/student',
-			handleValidationErrors,
 			this.studentController.createStudent,
 		);
-		this.router.get('/student', auth, this.studentController.getStudents);
+		this.router.get('/student', this.studentController.getStudents);
 		this.router.delete(
 			'/student/:rollNumber',
-			handleValidationErrors,
 			...deleteStudentByrollNumber,
+			handleValidationErrors,
 			this.studentController.deleteStudent,
 		);
 		this.router.get(
 			'/analytics/students',
-			handleValidationErrors,
 			this.studentController.getStudentAnalytics,
 		);
 		this.router.patch(
 			'/student/:rollNumber',
-			handleValidationErrors,
 			...updateStudentValidator,
+			handleValidationErrors,
 			this.studentController.updateStudent,
 		);
 	}
