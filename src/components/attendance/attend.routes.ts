@@ -2,6 +2,8 @@
 import { Router } from 'express';
 import AttendanceController from './attend.controller';
 import auth from '../../utils/auth'
+import { createAttendanceValidator, updateAttendanceValidator } from './attend.validator';
+import { handleValidationErrors } from 'utils/handlevalidator';
 class AttendanceRoute {
 	public router: Router;
 
@@ -16,6 +18,8 @@ class AttendanceRoute {
 		//route to add attendance
 		this.router.post(
 			'/attendance',
+			...createAttendanceValidator,
+			handleValidationErrors,
 			this.attendanceController.createAttendance,
 		);
 		//route to get absentees
@@ -26,6 +30,8 @@ class AttendanceRoute {
 		//route to update attendance
 		this.router.patch(
 			'/attendance/:rollNumber',
+			...updateAttendanceValidator,
+			handleValidationErrors,
 			this.attendanceController.updateAttendance,
 		);
 		//route to get attendance analytics(<75%)
