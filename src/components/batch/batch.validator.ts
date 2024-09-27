@@ -1,12 +1,12 @@
 import { body, param, query } from "express-validator";
 
 const createBatchValidator: any[] = [
-    body('year').isInt().withMessage('Valid year is required'),
+    body('year').isNumeric().withMessage('Valid year is required'),
     body('branches').isArray().withMessage('At least one branch is required'),
 ]
 
 const updateBatchValidator: any[] = [
-    query('year').isInt({ min: 1900 }).withMessage('Valid year is required'),
+    query('year').isNumeric().withMessage('Valid year is required'),
     body('branches').isArray().withMessage('At least one branch is required')
 ]
 
@@ -15,9 +15,9 @@ const deleteBatchValidator: any[] = [
 ]
 
 const addBranchValidator: any[] = [
-    query('year').isInt().withMessage('Valid year is required'),
+    query('year').isNumeric().withMessage('Valid year is required'),
     body('name').isString().notEmpty().withMessage('Branch name is required'),
-    body('totalStudentsIntake').isInt().withMessage('Total students intake must be a positive number'),
+    body('totalStudentsIntake').isNumeric().withMessage('Total students intake must be a positive number'),
   ];
 
 export {

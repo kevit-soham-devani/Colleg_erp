@@ -13,7 +13,7 @@ const signUpValidator: any[] =[
 ]
 
 const updateValidator: any[] = [
-  body('_id').isString().notEmpty().withMessage('Id is required'),
+  body('id').isMongoId().notEmpty().withMessage('Id is required'),
   body('role').isString().notEmpty().withMessage('Role is required').isIn([User_Role.Admin, User_Role.Staff]).withMessage('Role must be either "admin" or "staffmember"'),
   body('name').isString().notEmpty().withMessage('username is required'),
   body('phoneNumber').notEmpty().withMessage('Phone number must be correct')
