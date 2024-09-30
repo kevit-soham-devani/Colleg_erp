@@ -2,7 +2,7 @@ import { body } from "express-validator";
 import { ISABSENT } from "./attendence.enum";
 
 const createAttendanceValidator: any[] = [
-    body('rollnumber').notEmpty().withMessage('Roll number is required').isNumeric().withMessage('Roll number must be a string'),
+    body('rollnumber').notEmpty().withMessage('Roll number is required').isNumeric().withMessage('Roll number must be a number'),
     body('date').notEmpty().isDate().withMessage('Date is required'),
     body('isAbsent')
     .isIn([ISABSENT.ABSENT, ISABSENT.PRESENT])
@@ -10,7 +10,7 @@ const createAttendanceValidator: any[] = [
 ]
 
 const updateAttendanceValidator: any[] = [
-    body('rollnumber').notEmpty().withMessage('Roll number is required').isNumeric().withMessage('Roll number must be a string'),
+    body('rollnumber').notEmpty().withMessage('Roll number is required').isNumeric().withMessage('Roll number must be a number'),
     body('date').notEmpty().isDate().withMessage('Date is required'),
     body('isAbsent')
     .isIn([ISABSENT.ABSENT, ISABSENT.PRESENT])

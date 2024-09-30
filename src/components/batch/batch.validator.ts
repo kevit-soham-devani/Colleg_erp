@@ -11,7 +11,7 @@ const updateBatchValidator: any[] = [
 ]
 
 const deleteBatchValidator: any[] = [
-    param('year').isInt().withMessage('Valid year is required for deletion'),
+    param('year').isNumeric().withMessage('Valid year is required for deletion'),
 ]
 
 const addBranchValidator: any[] = [
