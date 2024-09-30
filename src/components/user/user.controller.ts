@@ -59,11 +59,11 @@ class userController {
   async updateUser(req, res, next) {
 	try {
 		const { role } = req.user;
-		const { _id } = req.params;
+		const { id } = req.params;
 		if (role !== User_Role.Admin) {
 			return res.send({ message: 'Not authorized' });
 		}
-		const updatedUser = await updateuserDetails(_id, req.body);
+		const updatedUser = await updateuserDetails(id, req.body);
 		return res.send({ data: updatedUser });
 	} catch (error) {
 		return res.status(500).send({message : error});

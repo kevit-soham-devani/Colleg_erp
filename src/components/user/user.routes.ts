@@ -31,7 +31,7 @@ class UserRouter {
         this.userController.logInUser)
 
         //UpdateUser
-        this.router.patch('/user/:_id',
+        this.router.patch('/user/:id',
         auth,
         ...updateValidator,
         handleValidationErrors,
